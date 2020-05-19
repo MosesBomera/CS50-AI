@@ -122,8 +122,51 @@ def minimax(board):
     """
     Returns the optimal action for the current player on the board.
     """
-    # Whose turn?
+    # if not terminal(board):
+    if terminal(board):
+        return None
+
+    optimal_move = None
+    # check turn?
     turn = player(board)
     if turn == 'X':
-        pass
+        v = -math.inf
+        for action in actions(board):
+            v_ = max(v, min_value(result(board, action)))
+            if v_ > v:
+                v = v_
+                optimal_move = action
+        return optimal_move, v
+    if turn == 'O':
+        v = math.inf
+        for action in actions(board):
+            v_ = min(v, max_value(result(board, action)))
+            if v_ < v:
+                v = v_
+                optimal_move = action
+        return optimal_move, v
     # raise NotImplementedError
+
+def max_value(board):
+    """Returns the optimal value for X player."""
+    if terminal(board):
+        return utility(board)
+
+    # Comparision value (v)
+    v = -math.inf
+
+    for action in actions(board):
+        v = max(v, min_value(result(board, action)))
+    return v
+
+def min_value(board):
+    """Returns the optimal value for O player."""
+    if terminal(board):
+        return utility(board)
+
+    # Comparison value (v)
+    v = math.inf
+
+    for action in actions(board):
+        v = min(v, max_value(result(board, action)))
+    return v
