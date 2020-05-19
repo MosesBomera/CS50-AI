@@ -87,7 +87,20 @@ def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    raise NotImplementedError
+    # Check if the game has been won
+    if winner(board) != None:
+        return True
+
+    # Check if all cells are filled
+    count = 0
+    for row in board:
+        count += row.count(None)
+    if count == 0:
+        return True
+    else:
+        # Game still in progress
+        return False
+    # raise NotImplementedError
 
 
 def utility(board):
