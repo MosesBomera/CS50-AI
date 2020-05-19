@@ -1,1 +1,4 @@
 project0/degrees/**/*.csv
+project0/degrees/__pycache__/
+project0/tictactoe/__pycache__/
+project0/tictactoe/OpenSans-Regular.tff

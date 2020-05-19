@@ -22,7 +22,21 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    raise NotImplementedError
+    # It is assumed that 'X' plays first, and the mode always
+    # alternates.
+    # The function follows the logic of the count of current
+    # None values,
+    # if count is odd, 'X' plays,
+    # if count is even, 'O' plays.
+
+    # Initialize count
+    count = 0
+    for row in board:
+        count += row.count(None)
+    if count % 2 == 0:
+        return O
+    return X
+    # raise NotImplementedError
 
 
 def actions(board):
