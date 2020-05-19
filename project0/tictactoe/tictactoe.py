@@ -3,6 +3,7 @@ Tic Tac Toe Player
 """
 
 import math
+from copy import deepcopy
 
 X = "X"
 O = "O"
@@ -58,8 +59,15 @@ def result(board, action):
     """
     # Unpack the action
     i, j = action
-    board[i][j] = player(board)
-    return board
+    board_copy = deepcopy(board)
+    # error handling
+    if not (0 <= i <= 2 and 0 <= j <= 2):
+        raise ValueError("Invalid Board Position")
+    if board_copy[i][j] != None:
+        raise ValueError("Board Position Occupied")
+    board_copy[i][j] = player(board)
+    
+    return board_copy
     # raise NotImplementedError
 
 
@@ -67,7 +75,8 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
+
+    # raise NotImplementedError
 
 
 def terminal(board):
