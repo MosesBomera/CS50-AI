@@ -136,7 +136,7 @@ def minimax(board):
             if v_ > v:
                 v = v_
                 optimal_move = action
-        return optimal_move, v
+        return optimal_move
     if turn == 'O':
         v = math.inf
         for action in actions(board):
@@ -144,7 +144,7 @@ def minimax(board):
             if v_ < v:
                 v = v_
                 optimal_move = action
-        return optimal_move, v
+        return optimal_move
     # raise NotImplementedError
 
 def max_value(board):
